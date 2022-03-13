@@ -9,17 +9,17 @@ import static org.junit.Assert.assertEquals;
 
 public class DeletePetApi {
     static String url = "https://petstore.swagger.io";
-    static String deletepath = "/v2/pet";
+    static String deletepath = "/v2/pet/";
 
-    @Test(priority = 1,description = "Positive Case")
-    public void deletePetApi(){
+    @Test(priority = 1, description = "Positive Case")
+    public void deletePetApiPositive() {
         RestAssured.baseURI = url;
         Response res =
                 given()
                         .header("Accept-Encoding", "gzip,deflate,br")
                         .header("Content-Type", "application/json")
                         .when()
-                        .delete(url + deletepath+"/1")
+                        .delete(url + deletepath + "1")
                         .then()
                         .extract().response();
         assertEquals(res.statusCode(), 200);
@@ -28,8 +28,6 @@ public class DeletePetApi {
 
     }
 
-    }
-
-
+}
 
 

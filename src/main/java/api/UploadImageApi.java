@@ -22,6 +22,7 @@ public class UploadImageApi {
                 given()
                         .header("Accept-Encoding", "gzip,deflate,br")
                         .multiPart("file",new File("src/main/imageapi/a.png"))
+
                         .when()
                         .post(url + uploadImage)
                         .then()
@@ -32,8 +33,8 @@ public class UploadImageApi {
 
     }
 
-    @Test(priority = 1,description = "Negative case File is Empty")
-    public void petAddPositive1() {
+    @Test(priority = 2,description = "Negative case Do not Send a File")
+    public void petAddNegative1() {
 
         RestAssured.baseURI = url;
         Response res =
@@ -44,9 +45,27 @@ public class UploadImageApi {
                         .post(url + uploadImage)
                         .then()
                         .extract().response();
-        assertEquals(res.statusCode(), 200);
+        assertEquals(res.statusCode(), 415);
         String res1 = res.asString();
         System.out.println("status code and response : " + res.statusCode() + res1);
 
     }
+
+//    @Test(priority = 3,description = "Negative case ")
+//    public void petAddNegative2() {
+//
+//        RestAssured.baseURI = url;
+//        Response res =
+//                given()
+//                        .header("Accept-Encoding", "gzip,deflate,br")
+//                        .multiPart("file",new File(""))
+//                        .when()
+//                        .post(url + uploadImage)
+//                        .then()
+//                        .extract().response();
+//        assertEquals(res.statusCode(), 415);
+//        String res1 = res.asString();
+//        System.out.println("status code and response : " + res.statusCode() + res1);
+//
+//    }
 }

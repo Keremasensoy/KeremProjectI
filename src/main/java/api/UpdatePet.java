@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 public class UpdatePet {
 
     static String url = "https://petstore.swagger.io";
-    static String updatepet = "/v2/pet";
+    static String updatepett = "/v2/pet";
 
     @Test(priority = 1,description = "Postive Case")
     public void petUpdatePositive() {
@@ -39,7 +39,7 @@ public class UpdatePet {
                                 "  \"status\": \"pending\"\n" +
                                 "}")
                         .when()
-                        .put(url + updatepet)
+                        .put(url + updatepett)
                         .then()
                         .extract().response();
         assertEquals(res.statusCode(), 200);
@@ -48,39 +48,5 @@ public class UpdatePet {
 
     }
 
-    @Test(priority = 2,description = "Negative Case ID is String ")
-    public void petUpdateNegative1() {
-
-        RestAssured.baseURI = url;
-        Response res =
-                given()
-//                        .header("Accept-Encoding", "gzip,deflate,br")
-                        .header("Content-Type", "application/json")
-                        .body("{\n" +
-                                "  \"id\": \"dasfadsf\",\n" +
-                                "  \"category\": {\n" +
-                                "    \"id\": 2,\n" +
-                                "    \"name\": \"aslı\"\n" +
-                                "  },\n" +
-                                "  \"name\": \"oly\",\n" +
-                                "  \"photoUrls\": [\n" +
-                                "    \"supernova-explosion1-1024x572.jpg\"\n" +
-                                "  ],\n" +
-                                "  \"tags\": [\n" +
-                                "    {\n" +
-                                "      \"id\": 8,\n" +
-                                "      \"name\": \"qwe\"\n" +
-                                "    }\n" +
-                                "  ],\n" +
-                                "  \"status\": \"pending\"\n" +
-                                "}")
-                        .when()
-                        .put(url + updatepet)
-                        .then()
-                        .extract().response();
-        assertEquals(res.statusCode(), 500);
-        String res1 = res.asString();
-        System.out.println("status code and response : " + res.statusCode() + res1);
-
-    }
 }
+
