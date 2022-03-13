@@ -16,18 +16,18 @@ import java.util.Properties;
 
 public class BaseTest {
     public static WebDriver driver;
-    //    protected static WebDriverFactory webDriverFactory;
+    protected static WebDriverFactory webDriverFactory;
     protected static PageObject pageObject;
     protected static MainPage mainPage;
 
     @BeforeSuite
     public void openBrowser() {
         Properties properties = System.getProperties();
-        WebDriverFactory webDriverFactory = new WebDriverFactory();
+        webDriverFactory = new WebDriverFactory();
         driver = webDriverFactory.createWebDriver(Constants.CHROME);
         driver.get(Constants.InsiderURL);
         driver.manage().window().maximize();
-//        log.info("Driver is opened")
+
         pageObject = new PageObject(driver);
         pageObject.waitExpectedCondition(XpathConstants.AcceptCookies);
         pageObject.clickElement(XpathConstants.AcceptCookies);
@@ -41,7 +41,6 @@ public class BaseTest {
     }
 
     @AfterMethod
-
     public void screenShotFailure(ITestResult result) {
         if (result.getStatus() == ITestResult.FAILURE) {
             System.out.println("Taking screenshot of failed case");

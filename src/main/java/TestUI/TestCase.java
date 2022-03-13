@@ -22,6 +22,7 @@ public class TestCase extends BaseTest{
         pageObject.scrollDown();
         Thread.sleep(40);
         mainPage.clickQualityAssurance();
+        Thread.sleep(40);
         mainPage.clickSeeAllQAJobs();
         Thread.sleep(3000);
         mainPage.keyDownIstanbul();
@@ -29,5 +30,6 @@ public class TestCase extends BaseTest{
         pageObject.scrollDown();
         mainPage.findPosition("Quality Assurance","Quality Assurance","Istanbul, Turkey");
         mainPage.applyNow();
+        mainPage.checkApplyPage();
     }
 }

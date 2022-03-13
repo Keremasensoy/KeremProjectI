@@ -14,9 +14,11 @@ public class XpathConstants {
     public static final String SeeALLQAJobs = "//*[@id=\"page-head\"]/div/div/div[1]/div/div/a";
     public static final String CheckBoxLocation = "//*[@id=\"top-filter-form\"]/div[1]/span/span[1]/span/span[2]";
     public static final String LocationIstanbul = "//*[contains(@id,'Istanbul')]";
-    public static final String JobList = "position-department text-large font-weight-600 text-primary";
+    public static final String JobListLocation = "//*[@id=\"select2-filter-by-department-container\"]";
+    public static final String JobQuality =  "//*[@id=\"select2-filter-by-department-result-c3vl-Quality Assurance\"]";
     public static final String QualityAssurancePage = "//span[contains(text(), 'Quality Assurance')]";
     public static final String ApplyNow = "//*[@id=\"jobs-list\"]/div[2]/div/a";
+    public static final String ApplyPage = "/html/body/div[3]/div/div[1]/div/div[2]/a";
 
 
 }

@@ -6,14 +6,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
 import java.util.List;
+import java.util.Set;
 
 
 public class MainPage extends PageObject {
 
     public MainPage(WebDriver driver) {
         super(driver);
-        jse = (JavascriptExecutor) driver;
     }
 
 
@@ -57,12 +58,30 @@ public class MainPage extends PageObject {
     }
 
     public void clickSeeAllQAJobs() {
-        clickElement(XpathConstants.SeeALLQAJobs);
+        waitExpectedCondition(XpathConstants.SeeALLQAJobs);
+//        clickElement(XpathConstants.SeeALLQAJobs);
+        WebElement el5 = driver.findElement(By.xpath(XpathConstants.SeeALLQAJobs));
+        try {
+            jse.executeScript("arguments[0].click()", el5);
+        } catch (Exception e) {
+            Assert.fail("Can not click Quality Assurance");
+        }
+
     }
 
     public void keyDownIstanbul() {
+        waitExpectedCondition(XpathConstants.CheckBoxLocation);
         clickElement(XpathConstants.CheckBoxLocation);
+        waitExpectedCondition(XpathConstants.LocationIstanbul);
         clickElement(XpathConstants.LocationIstanbul);
+    }
+
+    public void keyDownQualityAssurance() {
+        waitExpectedCondition(XpathConstants.JobListLocation);
+        clickElement(XpathConstants.JobListLocation);
+        waitExpectedCondition(XpathConstants.JobQuality);
+        clickElement(XpathConstants.JobQuality);
+
     }
 
     public void selectLocation() {
@@ -78,33 +97,30 @@ public class MainPage extends PageObject {
         for (int i = 0; i < size; i++) {
             String text = elements.get(i).getText();
             System.out.print(text);
-//        for (WebElement element : elements) {
-//            String tabname = element.getText();
-//            if(tabname.contains(position)){
-//                System.out.println(tabname + "contains " + position);
-//            }
-//            else{
-//                 System.out.println(tabname + "does not contain" + position);
-//            }
+
             Assert.assertTrue(text + " does not contain " + position, text.contains(position));
             Assert.assertTrue(text + " does not contain " + location, text.contains(location));
             Assert.assertTrue(text + " does not contain " + department, text.contains(department));
-//            Assert.assertTrue(tabname + " does not contain " + applynow,tabname.contains(applynow));
         }
-//      aslinda basliklardan 2sinde quality assureance yok ama suan onu kontrol edemiyro ve hata basmiyor
+
     }
 
     public void applyNow() {
+
         WebElement el2 = driver.findElement(By.xpath(XpathConstants.ApplyNow));
         try {
             jse.executeScript("arguments[0].click()", el2);
         } catch (Exception e) {
             Assert.fail("Can not click applyNow");
         }
-
+        for (String winHandle : driver.getWindowHandles()) {
+            driver.switchTo().window(winHandle);
+        }
     }
+    public void checkApplyPage()   {
+        waitExpectedCondition(XpathConstants.ApplyPage);
 
-
-}
+        }
+    }
 
 

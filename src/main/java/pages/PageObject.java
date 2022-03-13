@@ -11,13 +11,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PageObject {
     protected WebDriver driver;
-    public JavascriptExecutor jse;
+    protected JavascriptExecutor jse;
+    protected WebDriverWait wait;
 
     public PageObject(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(this.driver, 30);
+        this.jse = (JavascriptExecutor) driver;
     }
-
-    WebDriverWait wait = new WebDriverWait(driver, 30);
 
 
     public void waitExpectedCondition(String xpath) {
@@ -37,7 +38,6 @@ public class PageObject {
     }
 
     public void scrollDown() {
-        jse = (JavascriptExecutor) driver;
         try {
             jse.executeScript("window.scrollBy(0,2000)");
         } catch (Exception e) {

@@ -1,6 +1,7 @@
 package util;
 
 import constants.Constants;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -9,7 +10,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class WebDriverFactory {
     public WebDriver createWebDriver(String type) {
-        WebDriver driver;
+        WebDriver driver = null;
 
         switch (type) {
             case Constants.CHROME:
@@ -29,9 +30,12 @@ public class WebDriverFactory {
 //                desiredCapabilities.setCapability("marionette", true);
                 driver = new FirefoxDriver();
                 return driver;
-            default:
-                throw new IllegalStateException("Unexpected value: " + type);
-        }
 
+            default:
+//                throw new IllegalStateException("Unexpected value: " + type);\
+                Assert.fail(String.format("dfadsfasdfasdf",type));
+                break;
+        }
+        return driver;
     }
 }
